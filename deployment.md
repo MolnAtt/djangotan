@@ -14,7 +14,7 @@ Kapcsolódó ismeretek (ha van, szuper, ha nincs, nem akkora baj):
 https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Deployment
 
 Én most 3.1.7-es Django-val dolgozom. Esetleg érdemes frissíteni a legújabb django-ra:
-hol: bárhol
+**Hol:** bárhol
 ```sh
 python -m pip install -U Django
 ```
@@ -72,7 +72,7 @@ Részletek:
 ## Git
 A könyvtárat, amibe dolgozol, nevezzük a továbbiakban ``GYÖKÉR``-nek. Természetesen nem kell ténylegesen így hívni, de én így fogok rá hivatkozni.
 
-hol: ``GYÖKÉR``
+**Hol:** ``GYÖKÉR``
 
 1. Nyisd meg a Git Bash-t, és írd be:
 ```sh
@@ -80,7 +80,7 @@ git clone https://github.com/ATEGITHUBFIÓKOD/REPONEVE.git
 ```
 
 2. Nyiss itt egy powershellt (vagy használd továbbra is a Git Bash-t, de én most powershellezni fogok) és üsd be, hogy ``tree /f``, amivel rálátsz a könyvtárfára. Ezt kéne látnod a ``GYÖKÉR`` könyvtárban:
-hol: ``GYÖKÉR``
+**Hol:** ``GYÖKÉR``
 ```sh
 C:.
 └───REPONEVE
@@ -107,7 +107,7 @@ Tisztességes szerver-oldali programozó **virtuális környezet**ben dolgozik �
 ### Új virtuális környezet létrehozása
  Csináljunk egy új virtuális környezetet a **GYÖKÉR** könyvtárban: Én ezt most **VENV**-nek fogom hívni, de te nyugodtan hívd másként. Egy jó tanács: kezdődjön más betűvel, mint a név, amit a projektednek szánsz.
 
- hol: ``GYÖKÉR/``
+ **Hol:** ``GYÖKÉR/``
 ```sh
 virtualenv -p python3 VENV
  ```
@@ -119,7 +119,7 @@ Indítsuk el a virtuális környezetet!
 
 Windows:
 
-hol: ``GYÖKÉR/``
+**Hol:** ``GYÖKÉR/``
 ```sh
 .\VENV\Scripts\activate
 ``` 
@@ -135,7 +135,7 @@ Ha sikerült, a prompt előtt megjelenik a ``"(VENV)"``. Fontos, hogy bármit is
 ### Django telepítése VENV-be
 3. Mivel most egy virtuális környezetben vagyunk, itt még nincsen Django telepítve. Telepítsük hát. Hacsak nem adsz meg verziószámot, akkor ez a legfrissebb Django-t fogja telepíteni. Ha nem a legfrissebb Django van eleve a gépeden, akkor még az is előfordulhat, hogy ez újabb lesz. Ez nem egyébként nem kellene problémát jelentsen.
 
-hol: mindegy, csak legyen ott a (VENV) a prompt elején!
+**Hol:** mindegy, csak legyen ott a (VENV) a prompt elején!
 ```sh
 pip install django
 ```
@@ -144,7 +144,7 @@ pip install django
 
 Ugyanebben a virtuális környezetben feltelepítjük a Gunicorn-t. Ez lényegében az Apache server Python-os megfelelője, a Herokunál nagyon szeretik.
 
-hol: mindegy, csak legyen ott a (VENV) a prompt elején!
+**Hol:** mindegy, csak legyen ott a (VENV) a prompt elején!
 ```sh
 pip install gunicorn
 ```
@@ -152,7 +152,7 @@ pip install gunicorn
 ### URL-es adatbáziskezelő django library telepítése VENV-be
 Ez majd azért kell, hogy a Herokun jól működjön az adatbáziskezelés. 
 
-hol: mindegy, csak legyen ott a (VENV) a prompt elején!
+**Hol:** mindegy, csak legyen ott a (VENV) a prompt elején!
 ```sh
 pip install dj-database-url
 ```
@@ -161,7 +161,7 @@ pip install dj-database-url
 ### Whitenoise
 A statikus fájlok szervírozásához ezt javasolja a Heroku:
 
-hol: mindegy, csak legyen ott a (VENV) a prompt elején!
+**Hol:** mindegy, csak legyen ott a (VENV) a prompt elején!
 ```sh
 pip install whitenoise
 ```
@@ -170,17 +170,17 @@ pip install whitenoise
 ### ellenőrzés
 A következő paranccsal ellenőrizhetjük, hogy miből áll pillanatnyilag a virtuális környezetünk:
 
-hol: mindegy, csak legyen ott a (VENV) a prompt elején!
+**Hol:** mindegy, csak legyen ott a (VENV) a prompt elején!
 ```sh
 pip freeze
 ```
 
 ## Django
 ### Projekt
-hol: ``GYÖKÉR/REPONEVE/``
+**Hol:** ``GYÖKÉR/REPONEVE/``
 Fontos, hogy nem a GYÖKÉR könyvtárban vagyunk, hanem azon belül. Szóval a ``tree /f``-fel most a következőt látod:
 
-hol: ``GYÖKÉR/REPONEVE/``
+**Hol:** ``GYÖKÉR/REPONEVE/``
 ```sh
 C:.
     .gitignore
@@ -195,7 +195,7 @@ django-admin startproject PROJEKT
 
 Egy ``tree /f``-re ekkor ezt látjuk:
 
-hol: ``GYÖKÉR/REPONEVE/``
+**Hol:** ``GYÖKÉR/REPONEVE/``
 ```sh
 C:.
 │   .gitignore
@@ -220,7 +220,7 @@ Szóval át kéne szervezni ezután a parancs után a könyvtárszerkezetet: Moz
 
 De ha érdekel a shell, itt a parancs: 
 
-hol: ``GYÖKÉR/REPONEVE``
+**Hol:** ``GYÖKÉR/REPONEVE``
 ```sh
 mv PROJEKT/* .
 ```
@@ -229,7 +229,7 @@ mv PROJEKT/* .
 
 Ez után így kéne kinézzen a könyvtárszerkezet:
 
-hol: ``GYÖKÉR/REPONEVE/``
+**Hol:** ``GYÖKÉR/REPONEVE/``
 ```sh
 C:.
 │   .gitignore
@@ -247,7 +247,7 @@ C:.
 
 Nézzük meg, működik-e:
 
-hol: ``GYÖKÉR/REPONEVE``
+**Hol:** ``GYÖKÉR/REPONEVE``
 ```sh
 py manage.py runserver
 ``` 
@@ -257,7 +257,7 @@ Ha jól működött, ideje kommittolni (így illik + gyakorlás + paranoia).
 
 Ehhez a Git Bash-ben lépj be a **REPONEV** könyvtárba, mert odakint nincs verziókezelés, csak odabent. Onnan lehet látni, hogy bekapcsol a verziókezelés, hogy megjelenik a prompt végén a "(main)".
 
-hol: ``GYÖKÉR/REPONEVE``-n belül bárhol
+**Hol:** ``GYÖKÉR/REPONEVE``-n belül bárhol
 ```sh
 git add .
 git commit -m "Django-projekt létrehozása."
@@ -271,30 +271,30 @@ A következő kettőnek nincs nagy jelentősége, mert a Heroku úgyis más adat
 
 Alapvető adatbázisos dolgokat migráljuk le.
 
-hol: ``GYÖKÉR/REPONEVE``
+**Hol:** ``GYÖKÉR/REPONEVE``
 ```sh
 py manage.py migrate
 ``` 
 
 Hozzunk létre admin felhasználót
 
-hol: ``GYÖKÉR/REPONEVE``
+**Hol:** ``GYÖKÉR/REPONEVE``
 ```sh
 py manage.py createsuperuser
 ```
 
 
 ### App
-hol: ``GYÖKÉR/REPONEVE``
+**Hol:** ``GYÖKÉR/REPONEVE``
 Csináljunk egy appot, erre én APP-ként fogok hivatkozni.
 
-hol: ``GYÖKÉR/REPONEVE``
+**Hol:** ``GYÖKÉR/REPONEVE``
 ```sh
 django-admin startapp APP
 ```
 Ekkor egy ``tree /f `` után a következőt látod:
 
-hol: ``GYÖKÉR/REPONEVE/``
+**Hol:** ``GYÖKÉR/REPONEVE/``
 ```sh
 C:.
 │   .gitignore
@@ -332,7 +332,7 @@ Gyorsan hozzunk létre egy view-t, hogy amikor már felraktuk heroku-ra a dolgok
 
 Ehhez a lépések röviden: regisztráljuk az appot
 
-hol: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``
+**Hol:** ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``
 ```py
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -346,7 +346,7 @@ INSTALLED_APPS = [
 ```
 regisztrálunk egy "templates" könyvtárat
 
-hol: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``
+**Hol:** ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``
 ```py
 TEMPLATES = [
     {
@@ -374,11 +374,11 @@ import os
 ```
 is valahova előre, de ez általában már ott van. Az adatbázis beállításainál meg lehet nézni, hogy ez ott hogy van, azt érdemes másolni.
 
-hol: ``GYÖKÉR/REPONEVE/``
+**Hol:** ``GYÖKÉR/REPONEVE/``
 
 Létrehozunk egy ``template`` könyvtárat, abban egy **APP** könyvtárat és abban egy akármilyen html(-template) fájlt, mondjuk ``EZ.html``-t. Mindegy, mi van benne.
 
-hol: ``GYÖKÉR/REPONEVE/APP/`` 
+**Hol:** ``GYÖKÉR/REPONEVE/APP/`` 
 
 A views.py-ba létrehozzuk a view-t, pl. én VIEW-nak fogom nevezni:
 ```py
@@ -386,7 +386,7 @@ def VIEW(request):
 	return render(request, "APP/EZ.html", {})
 ```
 
-hol: ``GYÖKÉR/REPONEVE/PROJEKT/urls.py``
+**Hol:** ``GYÖKÉR/REPONEVE/PROJEKT/urls.py``
 
 Importáljuk az app views.py-ját, majd hozzárendelünk a meghívott view-hoz egy url-t.
 ```py
@@ -401,7 +401,7 @@ urlpatterns = [
 
 Teszteljük, és ha jó, akkor kommitolunk:
 
-hol: ``GYÖKÉR/REPONEVE/``-n belül bárhol:
+**Hol:** ``GYÖKÉR/REPONEVE/``-n belül bár**Hol:**
 ```sh
 git add .
 git commit -m "App és view létrehozása."
@@ -416,7 +416,7 @@ https://dev.to/milandhar/what-are-heroku-dynos-3b1p
 
 #### URL-es adatbáziskezelő konfigurálása:
 
-hol: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py`` legaljára
+**Hol:** ``GYÖKÉR/REPONEVE/PROJEKT/settings.py`` legaljára
 ```py
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
@@ -442,7 +442,7 @@ További könyvtárak, ahonnan a ``collectstatic``-nak kutakodnia kellene.
 
 Szóval irány a...
 
-hol: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``
+**Hol:** ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``
 
 Másoljuk be ezeket a sorokat. A ``STATIC_URL`` valószínűleg már ott van, szóval ha kétszer szerepelne, akkor a régit töröljük...
 
@@ -467,7 +467,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 ```
 ### Mentés
 
-hol: ``GYÖKÉR/REPONEVE/``-n belül bárhol
+**Hol:** ``GYÖKÉR/REPONEVE/``-n belül bárhol
 ```sh
 git add .
 git commit -m "adatbázissal kapcsolatos beállítások a settings.py-ban"
@@ -475,10 +475,10 @@ git push origin main
 ```
 
 ## Heroku-fájlok
-hol: ``GYÖKÉR/REPONEVE/``
+**Hol:** ``GYÖKÉR/REPONEVE/``
 
 ### Procfile
-hol: ``GYÖKÉR/REPONEVE/``
+**Hol:** ``GYÖKÉR/REPONEVE/``
 
 - új fájl: "Procfile", kiterjesztés nem kell, benne ez: 
 ```sh
@@ -496,7 +496,7 @@ Ez a repo gyökerében kell legyen és a szükséges applikációkat kell tartal
 
 Most szuper a powershell, mert csak ki kell nyomtatni a pip freeze-ből:
 
-hol: ``GYÖKÉR/REPONEVE/``
+**Hol:** ``GYÖKÉR/REPONEVE/``
 ```sh
 pip freeze > requirements.txt
 ```
@@ -530,7 +530,7 @@ python-3.6.13
 ```
 Mivel nekem most 3.8.1-esem van még, a 3.8.8-at választom.
 
-hol: ``GYÖKÉR/REPONEVE/``
+**Hol:** ``GYÖKÉR/REPONEVE/``
 ```sh
 echo python-3.8.8 > runtime.txt
 ```
@@ -543,7 +543,7 @@ Teszteljük le újra a site-ot, működik-e. Ha megy minden, akkor mehet a git:
 
 ### Mentés
 
-hol: ``GYÖKÉR/REPONEVE/``-n belül bárhol
+**Hol:** ``GYÖKÉR/REPONEVE/``-n belül bárhol
 ```sh
 git add .
 git commit -m "Heroku-fájlok: Procfile, requirements, runtime.txt"
@@ -552,21 +552,21 @@ git push origin main
 
 ## Heroku
 ### Regisztráció
-hol:
+**Hol:**
 Magától értetődő. Ne felejtsük el az ingyenest választani.
 ### Kliens installálása
-hol: https://devcenter.heroku.com/articles/getting-started-with-python#set-up
+**Hol:** https://devcenter.heroku.com/articles/getting-started-with-python#set-up
 
 mehet minden tokkal-vonóval.
 
 A végén érdemes újraindítani a powershell-t gitbash-t, mivel új programok kerültek a PATH-ra, amiket majd használni fogunk.
 
 ### Kliens (CLI) használata
-hol: ``GYÖKÉR/REPONEVE/``
+**Hol:** ``GYÖKÉR/REPONEVE/``
 találd ki, hogy mi legyen a herokus repo neve, én ezt REMOTENEV-nek fogom hívni. Annyi jelentősége talán még lehet ennek, hogy a default url neve is ez lesz majd.
 
 #### Heroku remote létrehozása
-hol: ``GYÖKÉR/REPONEVE/``
+**Hol:** ``GYÖKÉR/REPONEVE/``
 ```sh
 heroku create HEROKUREMOTE
 ```
@@ -594,7 +594,7 @@ Irány a settings.py, azon belül is az allowed hosts. Ott egy üres listát tal
 
 Egyben itt az ideje annak is, hogy kikapcsoljuk a DEBUG-módot. (fejlesztés közben kapcsold be nyugodtan, de ne pusholj ``DEBUG=True``-s settings.py-t herokura, mert az tömérdek mennyiségű bizalmas információt (program struktúrája, felépítése, bizalmas adatbázisbeli adatok) ír ki a honlapra látogató felhasználónak, ha véletlenül bugra akad.)
 
-Hol: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``
+**Hol:** ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``
 ```py
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -620,34 +620,34 @@ git push heroku main
 
 Kell egy migrálás a remote-on
 
-hol: ``GYÖKÉR/REPONEVE``
+**Hol:** ``GYÖKÉR/REPONEVE``
 ```sh
 heroku run python manage.py migrate
 ```
 
 Nálam ez elsőre nem ment, mert nem itt volt defaultból, de ez már ment:
 
-hol: ``GYÖKÉR/REPONEVE``
+**Hol:** ``GYÖKÉR/REPONEVE``
 ```sh
 heroku run python project_heroku/manage.py migrate
 ```
 
 csináljunk admint...
 
-hol: ``GYÖKÉR/REPONEVE``
+**Hol:** ``GYÖKÉR/REPONEVE``
 ```sh
 heroku run python project_heroku/manage.py createsuperuser
 ```
 
 csináljunk shellel inicializálhatjuk programozottan az adatbázisunkat...
 
-hol: ``GYÖKÉR/REPONEVE``
+**Hol:** ``GYÖKÉR/REPONEVE``
 ```sh
 heroku run python project_heroku/manage.py shell
 ```
 És végül: ezzel nyitja meg az applikációt
 
-hol: ``GYÖKÉR/REPONEVE``
+**Hol:** ``GYÖKÉR/REPONEVE``
 ```sh
 heroku open
 ```
