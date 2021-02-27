@@ -4,7 +4,7 @@ Django-szerver telepítése Heroku-ra.
 ## Röviden
 A Heroku egy távoli tárhely, ami ingyenes. Az adatok küldése-fogadása a gitre épül. Tehát úgy fogod feltölteni a legújabb változatot a felhőbe, hogy push-olsz egyet herokura.
 
-Szükséges ismeretek
+Kapcsolódó ismeretek (ha van, szuper, ha nincs, nem akkora baj):
 - Git és Github alapvető ismeretek (clone, add, commit, push).
 - Legalább egy Django applikáción legyél már túl. (az mindegy, hogy az mennyire volt bonyolult)
 - Python virtuális környezet
@@ -13,7 +13,8 @@ Szükséges ismeretek
 
 https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Deployment
 
-- én most 3.1.7-es Django-val dolgozom. Esetleg érdemes frissíteni a legújabb django-ra:
+Én most 3.1.7-es Django-val dolgozom. Esetleg érdemes frissíteni a legújabb django-ra:
+hol: bárhol
 ```sh
 python -m pip install -U Django
 ```
@@ -21,8 +22,44 @@ python -m pip install -U Django
 Ez nem feltétlen szükséges, de melegen ajánlott (ha véletlenül virtuális környezet nélkül csinálnál új appot, vagy ilyesmi... pl a django-admin parancs nem virtuális környezettől függ, bár van virtuáliskörnyezetfüggő verzió is rá.)
 
 ## GitHub
-hol: https://github.com/
+### Mi a Git és a GitHub?
+#### Verziókezelés
+A git egy verziókezelő program. Számos előnye van, manapság alapvető standard az iparban, csak nyerni lehet vele. Mi most nem vesszük végig az összes okot, hogy miért is érdemes gitezni, mit lehet vele elérni, mindössze egyetlen vonását fogjuk kihasználni, erről az egyetlen oldaláról írok most néhány sort.
 
+Amikor egy játékprogramban rányomsz a mentésre. Létrejön egy mentés, ahova később vissza tudsz lépni, ha akarsz, ilyen értelemben képes vagy "visszautazni az időben". A git akkor jön nagyon jól, amikor az ember nem egy fájlt, hanem sok fájlt szerkeszt párhuzamosan egyszerre. A webprogramozás, különösen szerver-oldalon, ilyen műfaj. Telepítve a gitet a gépünkre képesek vagyunk pillanatképeket lőni a projektjeinkről úgy, hogy ezek ne egymás hegyén hátán, hanem a szemünk elől elrejtve, mégis végig nagyon rendszerezetten legyenek eltárolva. Ezek a pillanatképek tulajdonképpen egy bonyolult gráfot alkotnak. Ezt a tartalommal teli gráfot hívjuk repository-nak, vagy egyszerűen csak repónak. Ezen repók kezelése, szervezése tulajdonképpen a verziókezelés.
+
+#### Git
+A git egy programnyelv és egy program egyszerre. A git parancsokat könnyű lesz felismerni, mindig parancssorba írjuk őket és git-tel kezdődnek. Léteznek azonban ablakos alkalmazások is és a főbb fejlesztői környezetek és kódszerkesztők is beépített git-interfésszel rendelkeznek. Mi végig parancssort fogunk használni, mert az mindig a legáltalánosabb. Összesen 4 parancs lesz, nem kell ettől tartani.
+
+- ``git add .`` a git minden fájlt (a ``.gitignore`` fájlban felsorolt kivételektől eltekintve) felvesz a verziókezelendő fájlok közé. (Felteszi őket a "staging area"-ba (a pódiumra, ahol majd le fogja fényképezni őket))
+- ``git commit -m "ez egy leírás"`` A git elmenti az előbb kijelölt fájlokat és létrehozza a repó legújabb verzióját. A commit tartalma és kommentje is nagyon fontos. Ne committoljunk se túl ritkán, se túl gyakran: a program fejlődése során a különböző logikailag jól elkülöníthető feladatok elvégzése után commitoljunk. Programok esetében jó irányelv az, ha úgy fejlesztesz, hogy a minden commit során a program szintaktikailag helyes legyen és le tudjon futni annak ellenére, hogy még sok mindent nem csinál.
+- ``git push ... ...``: Feltölti a repót egy távoli repóba. Ezzel fogjuk majd feltölteni a távoli gépre is a programunk! De ez is része a folyamatos archiválásnak is: add-commit-push-add-commit-push-...
+- ``git clone ...`` a könyvtárba lehív egy távoli repót. A könyvtár lehetőleg legyen üres, és még véletlenül se legyen verziókezelt!
+
+#### GitHub
+A gitHub egy felhőben lévő tárhely a repók számára. Regisztrálsz, bejelentkezel, feltöltöd a repód (gittel a gépről) és akkor ott van, távol, biztonságban, és te bárhova leszedheted később. Természetesen a GitHub számos más funkciót el tud még látni ezen felül, pl. itt is lehet repókat létrehozni, elemezni, stb., de mi ez alkalommal nem fogunk mást használni. 
+
+Jelen pillanatban a GitHub-ra való regisztráció ingyenes, nyilvános repókat gyakorlatilag korlát nélkül lehet használni, másokkal megosztani. A privát repók (valószínűleg a szintén említésre méltó rivális GitLab nyomására) is korlátozott mértékben, de hozzáférhetők. Legfeljebb három kontribútor férhet hozzá a GitHub ingyenes verziójában egy privát repóhoz.
+
+**A szervered a GitHub-on majd mindenképp privát repón legyen!** Meg lehet oldani azt is, hogy public repón dolgozz, de ahhoz némi tapasztalat kell (titkos adatok, secret key, email-beállítások, stb. külön fájlba, azok gitignore-ba, stb.)
+
+Ha még nem regisztráltál gitre, itt az ideje. 
+Magától értedődő a regisztráció. 
+
+https://github.com/
+
+
+
+#### Heroku és Git
+
+A Heroku, ahova a szerverünket feltesszük majd, tulajdonképpen semmi mást nem csinál majd, mint egy ilyen repót üzemeletet. A repónak meg kell majd legyen a formája, stb., de ilyen egyszerű az egész. 
+
+Tehát mire a végére érsz ennek a tutorialnak, a szervered három helyen lesz:
+- a gépeden
+- GitHub-on
+- Heroku-n
+
+### Új repó
 Csináljunk egy GitHub repo-t, majd klónozzuk le a gépünkre. 
 
 Részletek:
@@ -53,6 +90,20 @@ C:.
 ```
 
 ## Virtuális környezet
+### Minek virtuális környezet?
+
+A virtuális környezet lényegében arra jó, hogy elszimulál egy számítógépes környezetet. Gondoljunk bele, hogy fejlesztesz Python 3.8.8-ban, Django 3.1.7-ben, ... egy adott applikációt, amit aztán kiraksz egy ilyen beállításokkal rendelkező szerverre. Majd másfél év után hozzá kell nyúlnod a **te gépeden**, hogy új feature-öket rakj bele, stb. Te azonban már rég túlléptél ezeken verziókon. Ilyenkor nem biztos, hogy érdemes az egész projektet áttenni fejlettebb verzióra, főleg, hogy a fent látható "..." nem 2-3 library-t, hanem inkább 20-40 library-t foglal magában.
+
+Ilyenkor az lenne a jó, ha csak vissza tudnál utazni az időben, mikor még azok a verziójúk voltak ezekből a library-kből, amik akkor voltak, mikor a szervert fejlesztetted. A virtuális környezet, virtual environment, ezt a célt szolgálja.
+
+A szerver fejlesztéséhez magához nincsen szükség virtuális környezetre, de ha az ember szeretne hosszú távon is eredményt elérni, akkor a projekt indítása előtt létrehoz egy virtuális környezetet, ami afféle buborékként szolgál majd. Ide olyan verzióban tesz fel mindent, amire csak szüksége van. És itt, ebben a "buborékban" fejleszt. Ez arra is jó, hogy egy régi szerverhez hozzá lehessen nyúlni, akkor is, ha nem te fejlesztetted: megnézed, hogy milyen library milyen verzióban van, és azt rakod a buborékba, imitálva a szerver környezetét.
+
+Mi most nem fogunk nagyon komoly virtuális környezetekkel foglalkozni (pl. ott a Docker, ami komplett oprendszereket szimulál), hanem csak és kizárólag pythonon belül végezzük el ezt. 
+
+Tehát: nem kötelező a virtuális környezet, de Heroku-t pl. sokkal egyszerűbb így konfigurálni, és egyébként is hosszú távon ez a jó praxis.
+
+Tisztességes szerver-oldali programozó **virtuális környezet**ben dolgozik és minden lépését alaposan **git**eli.
+
 ### Új virtuális környezet létrehozása
  Csináljunk egy új virtuális környezetet a **GYÖKÉR** könyvtárban: Én ezt most **VENV**-nek fogom hívni, de te nyugodtan hívd másként. Egy jó tanács: kezdődjön más betűvel, mint a név, amit a projektednek szánsz.
 
@@ -61,26 +112,30 @@ C:.
 virtualenv -p python3 VENV
  ```
 
- hja most újra nyomnál powershell-ben egy ``tree /f``-et, valószínűleg golyózni kezdene szemed, mert a virtuális környezet létrejöttével rengeteg fájl fog megjelenni a **GYÖKÉR** könyvtárban. Elég egy ``tree``-vel ellenőrizni, hogy lett itt most sok minden. Nekünk a Scripts könyvtár lesz majd a fontos a **VENV** könyvtárban, mert innen lehet majd indítani a virtuális környezetet.
+ ha most újra nyomnál powershell-ben egy ``tree /f``-et, valószínűleg golyózni kezdene szemed, mert a virtuális környezet létrejöttével rengeteg fájl fog megjelenni a **GYÖKÉR** könyvtárban. Elég egy ``tree``-vel ellenőrizni, hogy lett itt most sok minden. Nekünk a Scripts könyvtár lesz majd a fontos a **VENV** könyvtárban, mert innen lehet majd indítani a virtuális környezetet.
 
 ### Virtuális környezet elindítása
 Indítsuk el a virtuális környezetet! 
 
 Windows:
+
+hol: ``GYÖKÉR/``
 ```sh
 .\VENV\Scripts\activate
 ``` 
 Egyébként powershellben a ``VENV + TAB + S + TAB + a + TAB`` billentyűk lenyomásával szépen gyorsan kiegészül minden, szóval nem kell ezt ténylegesen megjegyezni. Azt kell megjegyezni, hogy a VENV könyvtárban S-betűvel kezdődő fájlban van az activate parancs... Tehát ha VENV más betűvel kezdődik, mint minden más, akkor elég az első betűt beütni.
  
- 	Linuxon ez kicsit más:
-	```sh
-	source herokuvenv/bin/activate
-	```
+Linuxon ez kicsit más:
+```sh
+source VENV/bin/activate
+```
 
-Ha sikerült, a prompt előtt megjelenik a ``"(VENV)"``.
+Ha sikerült, a prompt előtt megjelenik a ``"(VENV)"``. Fontos, hogy bármit is csinálsz, ez mindig legyen ott! **A powershell/bash/... minden új indításakor ezt külön el kell indítani!**
 
 ### Django telepítése VENV-be
 3. Mivel most egy virtuális környezetben vagyunk, itt még nincsen Django telepítve. Telepítsük hát. Hacsak nem adsz meg verziószámot, akkor ez a legfrissebb Django-t fogja telepíteni. Ha nem a legfrissebb Django van eleve a gépeden, akkor még az is előfordulhat, hogy ez újabb lesz. Ez nem egyébként nem kellene problémát jelentsen.
+
+hol: mindegy, csak legyen ott a (VENV) a prompt elején!
 ```sh
 pip install django
 ```
@@ -88,12 +143,16 @@ pip install django
 ### Gunicorn telepítése VENV-be
 
 Ugyanebben a virtuális környezetben feltelepítjük a Gunicorn-t. Ez lényegében az Apache server Python-os megfelelője, a Herokunál nagyon szeretik.
+
+hol: mindegy, csak legyen ott a (VENV) a prompt elején!
 ```sh
 pip install gunicorn
 ```
 
 ### URL-es adatbáziskezelő django library telepítése VENV-be
 Ez majd azért kell, hogy a Herokun jól működjön az adatbáziskezelés. 
+
+hol: mindegy, csak legyen ott a (VENV) a prompt elején!
 ```sh
 pip install dj-database-url
 ```
@@ -101,31 +160,42 @@ pip install dj-database-url
 ### Whitenoise a statikus fájlok kiszolgálásához
 ### Whitenoise
 A statikus fájlok szervírozásához ezt javasolja a Heroku:
+
+hol: mindegy, csak legyen ott a (VENV) a prompt elején!
 ```sh
 pip install whitenoise
+```
+
+
+### ellenőrzés
+A következő paranccsal ellenőrizhetjük, hogy miből áll pillanatnyilag a virtuális környezetünk:
+
+hol: mindegy, csak legyen ott a (VENV) a prompt elején!
+```sh
+pip freeze
 ```
 
 ## Django
 ### Projekt
 hol: ``GYÖKÉR/REPONEVE/``
-Fontos, hogy nem a GYÖKÉR könyvtárban vagyunk, hanem azon belül. A heroku arra számít, hogy a git-es fájlokkal egy magasságban helyezkedik el a manage.py, szóval még ezen is alakítani kell majd
-
-Szóval a ``tree /f``-fel most a következőt látod:
+Fontos, hogy nem a GYÖKÉR könyvtárban vagyunk, hanem azon belül. Szóval a ``tree /f``-fel most a következőt látod:
 
 hol: ``GYÖKÉR/REPONEVE/``
-```
+```sh
 C:.
     .gitignore
     LICENSE
     README.md
 ```
 
-Hozzunk létre egy django projektet (és kommitoljuk), amit én **PROJEKT**-nek fogok hívni (Mindenképp ellenőrizzük, hogy a virtualenv be van-e kapcsolva, különben tartósan kiszúrunk magunkkal!)
+Hozzunk létre egy django projektet (és kommitoljuk), amit én **PROJEKT**-nek fogok hívni (Mindenképp ellenőrizzük, hogy a virtualenv be van-e kapcsolva, különben tartósan kiszúrhatunk magunkkal!)
 ```sh
 django-admin startproject PROJEKT
 ```
 
 Egy ``tree /f``-re ekkor ezt látjuk:
+
+hol: ``GYÖKÉR/REPONEVE/``
 ```sh
 C:.
 │   .gitignore
@@ -144,9 +214,9 @@ C:.
 ```
 Tehát a **REPONEVE** könyvtárban egymásba ágyazva szerepel egy projektről elnevezett könyvtár és a projekt könyvtára maga. 
 
-Még mielőtt bármit csinálunk: a Heroku git repo-t vár, és a gyökérből szeretné futtatni a ``manage.py``-t, egy könyvtár mélységben kellene legyen az ``wsgy.py``, stb.
+Még mielőtt bármit csinálunk: a Heroku git repo-t vár, és a gyökérből szeretné futtatni a ``manage.py``-t, egy könyvtár mélységben fogja keresni a ``wsgy.py``-t, stb.
 
-Szóval át kéne szervezni ezután a parancs után a könyvtárszerkezetet: mozgasd át a felső PROJEKT könyvtár tartalmát a fölötte lévő könyvtárba. Ezt talán egyszerű intézőben a legegyszerűbb.
+Szóval át kéne szervezni ezután a parancs után a könyvtárszerkezetet: Mozgasd át a felső PROJEKT könyvtár tartalmát a fölötte lévő könyvtárba. Ezt elintézni talán egyszerű intézőben a legegyszerűbb.
 
 De ha érdekel a shell, itt a parancs: 
 
@@ -158,6 +228,8 @@ mv PROJEKT/* .
 
 
 Ez után így kéne kinézzen a könyvtárszerkezet:
+
+hol: ``GYÖKÉR/REPONEVE/``
 ```sh
 C:.
 │   .gitignore
@@ -185,7 +257,7 @@ Ha jól működött, ideje kommittolni (így illik + gyakorlás + paranoia).
 
 Ehhez a Git Bash-ben lépj be a **REPONEV** könyvtárba, mert odakint nincs verziókezelés, csak odabent. Onnan lehet látni, hogy bekapcsol a verziókezelés, hogy megjelenik a prompt végén a "(main)".
 
-hol: ``GYÖKÉR/REPONEVE``
+hol: ``GYÖKÉR/REPONEVE``-n belül bárhol
 ```sh
 git add .
 git commit -m "Django-projekt létrehozása."
@@ -222,6 +294,7 @@ django-admin startapp APP
 ```
 Ekkor egy ``tree /f `` után a következőt látod:
 
+hol: ``GYÖKÉR/REPONEVE/``
 ```sh
 C:.
 │   .gitignore
@@ -257,8 +330,9 @@ C:.
 
 Gyorsan hozzunk létre egy view-t, hogy amikor már felraktuk heroku-ra a dolgokat, akkor meg tudjuk nézni, jól működnek-e a dolgok.
 
-Ehhez a lépések röviden:
-- PROJEKT/settings.py: regisztráljuk az appot
+Ehhez a lépések röviden: regisztráljuk az appot
+
+hol: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``
 ```py
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -270,7 +344,9 @@ INSTALLED_APPS = [
     'app_toc',
 ]
 ```
-- PROJEKT/settings.py: regisztrálunk egy "templates" könyvtárat
+regisztrálunk egy "templates" könyvtárat
+
+hol: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``
 ```py
 TEMPLATES = [
     {
@@ -298,13 +374,21 @@ import os
 ```
 is valahova előre, de ez általában már ott van. Az adatbázis beállításainál meg lehet nézni, hogy ez ott hogy van, azt érdemes másolni.
 
-- PROJEKT/ létrehozunk egy ``template`` könyvtárat, abban egy **APP** könyvtárat és abban egy akármilyen html(-template) fájlt, mondjuk ``EZ.html``-t. Mindegy, mi van benne.
-- PROJEKT/APP/a views.py-ba létrehozzuk a view-t, pl. én VIEW-nak fogom nevezni:
+hol: ``GYÖKÉR/REPONEVE/``
+
+Létrehozunk egy ``template`` könyvtárat, abban egy **APP** könyvtárat és abban egy akármilyen html(-template) fájlt, mondjuk ``EZ.html``-t. Mindegy, mi van benne.
+
+hol: ``GYÖKÉR/REPONEVE/APP/`` 
+
+A views.py-ba létrehozzuk a view-t, pl. én VIEW-nak fogom nevezni:
 ```py
 def VIEW(request):
 	return render(request, "APP/EZ.html", {})
 ```
-- PROJEKT/urls.py: importáljuk az app views.py-ját, majd hozzárendelünk a meghívott view-hoz egy url-t.
+
+hol: ``GYÖKÉR/REPONEVE/PROJEKT/urls.py``
+
+Importáljuk az app views.py-ját, majd hozzárendelünk a meghívott view-hoz egy url-t.
 ```py
 from django.contrib import admin
 from django.urls import path
@@ -316,6 +400,8 @@ urlpatterns = [
 ```
 
 Teszteljük, és ha jó, akkor kommitolunk:
+
+hol: ``GYÖKÉR/REPONEVE/``-n belül bárhol:
 ```sh
 git add .
 git commit -m "App és view létrehozása."
@@ -325,13 +411,12 @@ git push origin main
 ### Adatbázis
 Sajnos az SQLite-nak itt a vége. A Heroku dyno-based, ami azzal jár, hogy ún. ephemeral fájlrendszert használ. Erről most elég annyit tudni, hogy minden alkalommal törlődik/újratöltődik minden, amikor újraindítjuk az appot (De általában naponta újraindul az egész, szóval...). Mivel az SQLite egy fájlba ment mindent, az is törlődne ott, szóval muszáj találnunk egy nem sqlite alapú adatbázist, tehát új alapokra kell helyezni a Django memóriáját...
 
-Akit érdekel, itt lehet olvasgatni arról, hogy mik azok a dyno-k: 
+Akit érdekel, itt lehet olvasgatni arról, hogy mik ezek a Heroku dyno-k: 
 https://dev.to/milandhar/what-are-heroku-dynos-3b1p
 
 #### URL-es adatbáziskezelő konfigurálása:
-hol: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``
 
-mehet a settings.py legalájra:
+hol: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py`` legaljára
 ```py
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
@@ -356,8 +441,8 @@ Ez az URL-je annak, ahonnan a statikus fájlok szervírozva lesznek, pl egy CDN 
 További könyvtárak, ahonnan a ``collectstatic``-nak kutakodnia kellene.
 
 Szóval irány a...
-hol: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``
 
+hol: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``
 
 Másoljuk be ezeket a sorokat. A ``STATIC_URL`` valószínűleg már ott van, szóval ha kétszer szerepelne, akkor a régit töröljük...
 
@@ -382,6 +467,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 ```
 ### Mentés
 
+hol: ``GYÖKÉR/REPONEVE/``-n belül bárhol
 ```sh
 git add .
 git commit -m "adatbázissal kapcsolatos beállítások a settings.py-ban"
@@ -406,12 +492,11 @@ echo web: gunicorn project_heroku.wsgi --log-file - > Procfile
 ```
 
 ### requirements.txt
-hol: ``GYÖKÉR/REPONEVE/``
-
 Ez a repo gyökerében kell legyen és a szükséges applikációkat kell tartalmazza. A Heroku ez alapján installál akkor, amikor újraépíti a környezetet.
 
 Most szuper a powershell, mert csak ki kell nyomtatni a pip freeze-ből:
 
+hol: ``GYÖKÉR/REPONEVE/``
 ```sh
 pip freeze > requirements.txt
 ```
@@ -434,8 +519,6 @@ Amikor kézzel írod be a psycopg2-t, ne feledd a dupla egyenlőségjelet!
 
 
 #### runtime.txt
-hol: ``GYÖKÉR/REPONEVE/``
-
 Meg kell adni, hogy a heroku milyen python-nal dolgozzon. Ezt tartalmazza majd a ``runtime.txt``.
 
 Per pillanat én most a következő verziókat látom itt: https://devcenter.heroku.com/articles/python-support#supported-python-runtimes
@@ -447,6 +530,7 @@ python-3.6.13
 ```
 Mivel nekem most 3.8.1-esem van még, a 3.8.8-at választom.
 
+hol: ``GYÖKÉR/REPONEVE/``
 ```sh
 echo python-3.8.8 > runtime.txt
 ```
@@ -459,6 +543,7 @@ Teszteljük le újra a site-ot, működik-e. Ha megy minden, akkor mehet a git:
 
 ### Mentés
 
+hol: ``GYÖKÉR/REPONEVE/``-n belül bárhol
 ```sh
 git add .
 git commit -m "Heroku-fájlok: Procfile, requirements, runtime.txt"
@@ -481,6 +566,7 @@ hol: ``GYÖKÉR/REPONEVE/``
 találd ki, hogy mi legyen a herokus repo neve, én ezt REMOTENEV-nek fogom hívni. Annyi jelentősége talán még lehet ennek, hogy a default url neve is ez lesz majd.
 
 #### Heroku remote létrehozása
+hol: ``GYÖKÉR/REPONEVE/``
 ```sh
 heroku create HEROKUREMOTE
 ```
