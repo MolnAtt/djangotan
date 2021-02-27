@@ -1,5 +1,4 @@
-# Deployment (Heroku)
-Django-szerver telepítése Heroku-ra.
+# Django applikáció telepítése Heroku-ra
 
 ## Röviden
 A Heroku egy távoli tárhely, ami ingyenes. Az adatok küldése-fogadása a gitre épül. Tehát úgy fogod feltölteni a legújabb változatot a felhőbe, hogy push-olsz egyet herokura.
@@ -285,7 +284,6 @@ py manage.py createsuperuser
 
 
 ### App
-**Hol:** ``GYÖKÉR/REPONEVE``
 Csináljunk egy appot, erre én APP-ként fogok hivatkozni.
 
 **Hol:** ``GYÖKÉR/REPONEVE``
@@ -341,7 +339,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app_toc',
+    'APP',
 ]
 ```
 regisztrálunk egy "templates" könyvtárat
