@@ -1,5 +1,16 @@
 # Django applikáció telepítése Heroku-ra
 
+## Az elnevezésekről
+A csupa **nagybetűs kifejezések** mind "placeholderek" a számodra, tehát pl a PROJEKT kifejezés helyére a te projekted nevét írd majd, stb.
+
+A következő ilyen változókat fogjuk használni:
+- ``PROJEKT``: a Django projekt neve, ahol a ``settings.py`` is megtalálható.
+- ``APP``:  A Django applikáció neve, ahol a ``views.py`` is megtalálható.
+- ``HEROKUREMOTE``: Az applikáció leendő webes elérhetősége, a mi a http://HEROKUREMOTE.herokuapp.com/ címben is megtalálható lesz majd.
+- ``GYÖKÉR``: Az egész fájlrendszer gyökérkönyvtára, ahol a virtuális környezet, a repo, és egyébként minden megtalálható.
+- ``REPONEVE``: A git repository neve.
+- ``VENV``: A virtuális környezet neve.
+
 ## Röviden
 A Heroku egy távoli tárhely, ami ingyenes. Az adatok küldése-fogadása a gitre épül. Tehát úgy fogod feltölteni a legújabb változatot a felhőbe, hogy push-olsz egyet herokura.
 
@@ -62,7 +73,7 @@ Tehát mire a végére érsz ennek a tutorialnak, a szervered három helyen lesz
 Csináljunk egy GitHub repo-t, majd klónozzuk le a gépünkre. 
 
 Részletek:
-1. GitHub new repo. A továbbiakban a repó nevére **REPONEVE**-vel hivatkozunk.
+1. GitHub new repo. A továbbiakban a repó nevére ``REPONEVE``-vel hivatkozunk. 
 2. add .gitignore listből válasszuk ki a Python-t.
 3. init with README.md
 4. Másold ki vágólapra a git repo címét, amit a github repód Code-gombjára kattintva találsz meg, és valahogy így néz ki: 
@@ -104,7 +115,7 @@ Tehát: nem kötelező a virtuális környezet, de Heroku-t pl. sokkal egyszerű
 Tisztességes szerver-oldali programozó **virtuális környezet**ben dolgozik és minden lépését alaposan **git**eli.
 
 ### Új virtuális környezet létrehozása
- Csináljunk egy új virtuális környezetet a **GYÖKÉR** könyvtárban: Én ezt most **VENV**-nek fogom hívni, de te nyugodtan hívd másként. Egy jó tanács: kezdődjön más betűvel, mint a név, amit a projektednek szánsz.
+ Csináljunk egy új virtuális környezetet a **GYÖKÉR** könyvtárban: Én ezt most ``VENV``-nek fogom hívni, de te nyugodtan hívd másként. Egy jó tanács: kezdődjön más betűvel, mint a név, amit a projektednek szánsz.
 
  **Hol:** ``GYÖKÉR/``
 ```sh
@@ -211,7 +222,7 @@ C:.
             wsgi.py
             __init__.py
 ```
-Tehát a **REPONEVE** könyvtárban egymásba ágyazva szerepel egy projektről elnevezett könyvtár és a projekt könyvtára maga. 
+Tehát a ``REPONEVE`` könyvtárban egymásba ágyazva szerepel egy projektről elnevezett könyvtár és a projekt könyvtára maga. 
 
 Még mielőtt bármit csinálunk: a Heroku git repo-t vár, és a gyökérből szeretné futtatni a ``manage.py``-t, egy könyvtár mélységben fogja keresni a ``wsgy.py``-t, stb.
 
@@ -428,15 +439,14 @@ Python Postgres adatbázistámogatás: át lehet térni devserveren is a postgre
 
 ### Statikus fájlok kiszolgálása
 
-három fontos változó van:
+Statikus fájloknak nevezzük azon fájlokat, amelyek nem szükségesek a html template rendereléséhez (a lyukasztott html kontextussal való behelyettesítésének elvégzéséhez). Ilyen pl az összes kép, css, js, stb. 
 
-```STATIC_URL```
-Ez az URL-je annak, ahonnan a statikus fájlok szervírozva lesznek, pl egy CDN (content delivery network) címe. A djangoban használt ``load static`` használja igazából ezt.
+(Ha mégis valamely része a stíluslapnak vagy scriptnek függne a kontextustól, be tudod rakni embedded scriptbe a html templatebe, és ott tudsz "lyukasztani".)
 
-```STATIC_ROOT``` Ez az abszolút elérési útvonala annak a könyvtárnak, ahol a Django ``collectstatic`` parancsa összeszedi az összes template-ek által hivatkozott statikus fájlt. Azután, hogy összeszedte, egy csapatban tölti fel őket oda, ahova hostolni kell. 
-
-```STATICFILES_DIRS```
-További könyvtárak, ahonnan a ``collectstatic``-nak kutakodnia kellene.
+A Heroku-n közvetlenül a push (=deployment) után lefut majd egy collectstatic parancs. Ez azt csinálja, hogy 
+1. összegyűjti az összes regisztrált app összes statikus fájljait, és még azokat az app-független statikus fájlokat, amelyeket megtalál ``STATICFILES_DIRS`` változóban (lista) tárolt könyvtárak között.
+2. bemásolja őket egy ``STATIC_ROOT`` változóban (string) tárolt könyvtárba.
+3. ahonnan majd a ``STATIC_URL`` változóban (string) tárolt helyre fogja kiszolgálni a fájlokat. A böngészőben F12-vel is ezt látjuk majd, hogy itt vannak a statikus fájlok.
 
 Szóval irány a...
 
@@ -445,10 +455,17 @@ Szóval irány a...
 Másoljuk be ezeket a sorokat. A ``STATIC_URL`` valószínűleg már ott van, szóval ha kétszer szerepelne, akkor a régit töröljük...
 
 ```py
+# INNEN szedegeti össze azokat a statikus fájlokat, amelyek nem tartoznak egyetlen apphoz sem:
+STATICFILES_DIRS = [
+    BASE_DIR/'static'
+]
+
+# IDE fogja collectelni a collectstatic
 STATIC_ROOT = BASE_DIR / 'staticfiles'  
 #régebbi django-hoz: 
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# ITT fogja észlelni a böngésző
 STATIC_URL = '/static/'
 ```
 
@@ -480,13 +497,13 @@ git push origin main
 
 - új fájl: "Procfile", kiterjesztés nem kell, benne ez: 
 ```sh
-web: gunicorn project_heroku.wsgi --log-file -
+web: gunicorn PROJEKT.wsgi --log-file -
 ```
 
 Ezt igazából powershellel is kiírathatod, csak majd ne felejtsd el majd átállítani utf8-ra:
 
 ```sh
-echo web: gunicorn project_heroku.wsgi --log-file - > Procfile
+echo web: gunicorn PROJEKT.wsgi --log-file - > Procfile
 ```
 
 ### requirements.txt
@@ -623,25 +640,18 @@ Kell egy migrálás a remote-on
 heroku run python manage.py migrate
 ```
 
-Nálam ez elsőre nem ment, mert nem itt volt defaultból, de ez már ment:
-
-**Hol:** ``GYÖKÉR/REPONEVE``
-```sh
-heroku run python project_heroku/manage.py migrate
-```
-
 csináljunk admint...
 
 **Hol:** ``GYÖKÉR/REPONEVE``
 ```sh
-heroku run python project_heroku/manage.py createsuperuser
+heroku run python manage.py createsuperuser
 ```
 
 csináljunk shellel inicializálhatjuk programozottan az adatbázisunkat...
 
 **Hol:** ``GYÖKÉR/REPONEVE``
 ```sh
-heroku run python project_heroku/manage.py shell
+heroku run python manage.py shell
 ```
 És végül: ezzel nyitja meg az applikációt
 
@@ -649,4 +659,3 @@ heroku run python project_heroku/manage.py shell
 ```sh
 heroku open
 ```
-
