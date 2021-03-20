@@ -9,6 +9,7 @@ A következő ilyen változókat fogjuk használni:
 - ``HEROKUREMOTE``: Az applikáció leendő webes elérhetősége, a mi a http://HEROKUREMOTE.herokuapp.com/ címben is megtalálható lesz majd.
 - ``GYÖKÉR``: Az egész fájlrendszer gyökérkönyvtára, ahol a virtuális környezet, a repo, és egyébként minden megtalálható.
 - ``REPONEVE``: A git repository neve.
+- ``ATEGITHUBFIÓKOD``: A GitHub-fiókod neve.
 - ``VENV``: A virtuális környezet neve.
 
 ## Röviden
@@ -600,7 +601,13 @@ Erre rá is lehet nézni gitben:
 ```sh
 git remote -v
 ```
-
+ezt fogja mutatni:
+```
+heroku  https://git.heroku.com/HEROKUREMOTE.git (fetch)
+heroku  https://git.heroku.com/HEROKUREMOTE.git (push)
+origin  https://github.com/ATEGITHUBFIÓKOD/REPONEVE.git (fetch)
+origin  https://github.com/ATEGITHUBFIÓKOD/REPONEVE.git (push)
+```
 #### Allowed hosts
 
 DE még mielőtt pusholjuk herokura: egy production server nem működik, csak ott, ahol ezt neki megengedték.
