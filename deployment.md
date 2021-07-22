@@ -3,7 +3,7 @@
 ## Az elnevezésekről
 A csupa **nagybetűs kifejezések** mind "placeholderek" a számodra, tehát pl a PROJEKT kifejezés helyére a te projekted nevét írd majd, stb.
 
-A következő ilyen változókat fogjuk használni:
+A következő változókat fogjuk használni:
 - ``PROJEKT``: a Django projekt neve, ahol a ``settings.py`` is megtalálható.
 - ``APP``:  A Django applikáció neve, ahol a ``views.py`` is megtalálható.
 - ``HEROKUREMOTE``: Az applikáció leendő webes elérhetősége, a mi a http://HEROKUREMOTE.herokuapp.com/ címben is megtalálható lesz majd.
