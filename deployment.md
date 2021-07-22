@@ -25,6 +25,7 @@ Kapcsolódó ismeretek (ha van, szuper, ha nincs, nem akkora baj):
 https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Deployment
 
 Én most 3.1.7-es Django-val dolgozom. Esetleg érdemes frissíteni a legújabb django-ra:
+
 **Hol:** bárhol
 ```sh
 python -m pip install -U Django
@@ -91,6 +92,7 @@ git clone https://github.com/ATEGITHUBFIÓKOD/REPONEVE.git
 ```
 
 2. Nyiss itt egy powershellt (vagy használd továbbra is a Git Bash-t, de én most powershellezni fogok) és üsd be, hogy ``tree /f``, amivel rálátsz a könyvtárfára. Ezt kéne látnod a ``GYÖKÉR`` könyvtárban:
+
 **Hol:** ``GYÖKÉR``
 ```sh
 C:.
