@@ -146,7 +146,7 @@ source VENV/bin/activate
 Ha sikerült, a prompt előtt megjelenik a ``"(VENV)"``. Fontos, hogy bármit is csinálsz, ez mindig legyen ott! **A powershell/bash/... minden új indításakor ezt külön el kell indítani!**
 
 ### Django telepítése VENV-be
-3. Mivel most egy virtuális környezetben vagyunk, itt még nincsen Django telepítve. Telepítsük hát. Hacsak nem adsz meg verziószámot, akkor ez a legfrissebb Django-t fogja telepíteni. Ha nem a legfrissebb Django van eleve a gépeden, akkor még az is előfordulhat, hogy ez újabb lesz. Ez nem egyébként nem kellene problémát jelentsen.
+3. Mivel most egy virtuális környezetben vagyunk, itt még nincsen Django telepítve. Telepítsük hát. Hacsak nem adsz meg verziószámot, akkor ez a legfrissebb Django-t fogja telepíteni. Ha nem a legfrissebb Django van eleve a gépeden, akkor még az is előfordulhat, hogy ez újabb lesz.
 
 **Hol:** mindegy, csak legyen ott a (VENV) a prompt elején!
 ```sh
