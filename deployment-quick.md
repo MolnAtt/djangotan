@@ -56,7 +56,7 @@ Feltesszük, hogy a git és a python már installálva van.
 17. CMD: ``GYÖKÉR/REPONEVE/``: 
 	```sh
 	git add .
-	git commit -m "adatbázissal kapcsolatos beállítások a settings.py-ban"
+	git commit -m "Django-projekt létrehozása"
 	git push origin main
 	```
 18. CMD: ``GYÖKÉR/REPONEVE/``:  
