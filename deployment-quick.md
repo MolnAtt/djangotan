@@ -1,4 +1,4 @@
-# Deployment Herokura 44 lépésben
+# Deployment Herokura 43 lépésben
 Feltesszük, hogy a git és a python már installálva van. 
 
 Általában mindenhol igaz, hogy a python-t terminálból a "py" paranccsal érjük el windowsból, és "python" paranccsal érjük el linuxból.
@@ -117,27 +117,35 @@ Feltesszük, hogy a git és a python már installálva van.
 	db_from_env = dj_database_url.config(conn_max_age=500)
 	DATABASES['default'].update(db_from_env)
 	```
+29. VSCODE: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``: a whitenoise-t a MIDDLEWARE-ben meghívni:
+	```py
+	MIDDLEWARE = [
+	    'django.middleware.security.SecurityMiddleware',
+	    'whitenoise.middleware.WhiteNoiseMiddleware',
+	    'django.contrib.sessions.middleware.SessionMiddleware',
+	    'django.middleware.common.CommonMiddleware',
+	    'django.middleware.csrf.CsrfViewMiddleware',
+	    'django.contrib.auth.middleware.AuthenticationMiddleware',
+	    'django.contrib.messages.middleware.MessageMiddleware',
+	    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	]
+	```
 28. VSCODE: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``: 
 	```py
-# INNEN szedegeti össze azokat a statikus fájlokat, amelyek nem tartoznak egyetlen apphoz sem:
-STATICFILES_DIRS = [
-    BASE_DIR/'static'
-]
-
-# IDE fogja collectelni a collectstatic
-STATIC_ROOT = BASE_DIR / 'staticfiles'  
-#régebbi django-hoz: 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# ITT fogja észlelni a böngésző
-STATIC_URL = '/static/'
-	```
-29. VSCODE: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``: Middleware-ek közé betenni:
-	```py
-	'whitenoise.middleware.WhiteNoiseMiddleware'
-	```
-30. VSCODE: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``: 
-	```py
+	# INNEN szedegeti össze azokat a statikus fájlokat, amelyek nem tartoznak egyetlen apphoz sem:
+	STATICFILES_DIRS = [
+	    BASE_DIR / 'static'
+	]
+	
+	# IDE fogja collectelni a collectstatic
+	STATIC_ROOT = BASE_DIR / 'staticfiles'  
+	#régebbi django-hoz: 
+	#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+	
+	# ITT fogja észlelni a böngésző
+	STATIC_URL = '/static/'
+	
+	# itt a whitenoise alkalmazása
 	STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 	```
 31. CMD: ``GYÖKÉR/REPONEVE/``: 
