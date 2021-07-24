@@ -198,6 +198,11 @@ Feltesszük, hogy a git és a python már installálva van.
 
 	ALLOWED_HOSTS = ['HEROKUREMOTE.herokuapp.com', '127.0.0.1']
 	```
+45. CMD: ``GYÖKÉR/REPONEVE/``:
+	```sh
+	mkdir static
+	echo "ez azért kell, mert git csak fájlokat verziókezel, könyvtárat nem. Tehát a static mappa nem fog létrejönni a herokun, ha itt nincs egy fájl. Később simán törölhető. Kódolása is mindegy." > static/nelegyenures.txt
+	```
 17. CMD: ``GYÖKÉR/REPONEVE/``: MENTÉS és PUSH GitHubra és Herokura is!
 	```sh
 	git add .
