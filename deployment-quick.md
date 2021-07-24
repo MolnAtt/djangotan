@@ -5,6 +5,7 @@ Feltesszük, hogy a git és a python már installálva van.
 
 1. CMD: Django frissítése
 ```sh
+py -m pip install --upgrade pip
 py -m pip install -U Django
 ```
 2. BROWSER - GITHUB: Regisztrálj GitHub-ra: https://github.com/
