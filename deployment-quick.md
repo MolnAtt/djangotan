@@ -3,7 +3,7 @@ Feltesszük, hogy a git és a python már installálva van.
 
 Általában mindenhol igaz, hogy a python-t terminálból a "py" paranccsal érjük el windowsból, és "python" paranccsal érjük el linuxból.
 
-1. CMD: Django, virtualenv:
+1. CMD: pip, virtualenv, Django frissítése/telepítése:
 ```sh
 py -m pip install --upgrade pip
 py -m pip install virtualenv
