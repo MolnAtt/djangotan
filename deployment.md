@@ -28,10 +28,13 @@ https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Deployment
 
 **Hol:** bárhol
 ```sh
-python -m pip install -U Django
+py -m pip install -U Django
 ```
 
 Ez nem feltétlen szükséges, de melegen ajánlott (ha véletlenül virtuális környezet nélkül csinálnál új appot, vagy ilyesmi... pl a django-admin parancs nem virtuális környezettől függ, bár van virtuáliskörnyezetfüggő verzió is rá.)
+
+Fontos: Linuxon és Windowson csak annyi a különbség, hogy a pythont windowsban ``py``-jal kell meghívni, linuxban pedig ``python``-nal.
+
 
 ## GitHub
 ### Mi a Git és a GitHub?
