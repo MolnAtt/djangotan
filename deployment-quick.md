@@ -80,12 +80,15 @@ Feltesszük, hogy a git és a python már installálva van.
 	    'APP',
 	]
 	```
-22. CMD: ``GYÖKÉR/REPONEVE/APP/templates/``: (könyvtár létrehozása)
-23. CMD: ``GYÖKÉR/REPONEVE/APP/templates/EZ.html``: (teszthtml fájl létrehozása)
-24. VSCODE: ``GYÖKÉR/REPONEVE/APP/views.py``:
+22. CMD: ``GYÖKÉR/REPONEVE/APP/``: 
+	```sh
+	mkdir templates
+	echo "hello vilag" > ez.html
+	```
+25. VSCODE: ``GYÖKÉR/REPONEVE/APP/views.py``:
 	```py
 	def VIEW(request):
-	    return render(request, "EZ.html", {})
+	    return render(request, "ez.html", {})
 	```
 25. VSCODE: ``GYÖKÉR/REPONEVE/PROJEKT/urls.py``: 
 	```py
