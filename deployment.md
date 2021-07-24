@@ -468,13 +468,23 @@ STATICFILES_DIRS = [
 ]
 
 # IDE fogja collectelni a collectstatic
-STATIC_ROOT = BASE_DIR / 'staticfiles'  
+STATIC_ROOT = BASE_DIR / 'collectedstaticfiles'  
 #régebbi django-hoz: 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'collectedstaticfiles')
 
 # ITT fogja észlelni a böngésző
 STATIC_URL = '/static/'
 ```
+
+Van viszont még egy probléma: Most csinálnod kéne egy collectedstaticfiles mappát, ami persze üres, hiszen még nem futott le a szerveren egyszer sem a collectstaticfiles parancs. De a szerver nem is ez lesz, hanem az a herokun fog majd lefutni. De a herokura egy git repo-t fogunk pusholni. Viszont a git nem verziókezel könyvtárakat, csak fájlokat. Tehát hiába csinálsz itt egy üres collectedstaticfiles könyvtárat, mivel nem lesz benne fájl, nem fog tudni a repo a könyvtár létezéséről. Szóval ne csak egy könyvtárat hozz létre, hanem rakj bele valamilyen buta txt-t is, hogy a könyvtár miatt megjelenjen a könyvtár is a herokura való pusholáskor. Pl. így:
+
+**Hol:** ``GYÖKÉR/REPONEVE/``
+```sh 
+mkdir collectedstaticfiles
+echo "ez azért kell, mert git csak fájlokat verziókezel, könyvtárat nem. Tehát a static mappa nem fog létrejönni a herokun, ha itt nincs egy fájl. Később simán törölhető. Kódolása is mindegy." > static/nelegyenures.txt
+```
+
+Ezt a fájlt aztán később már törölheted, ha gondolod, mert ide úgyis kerül majd egy csomó statikus fájl a herokun (pl. az admin site miatt), és a fájl létezése már nem fog többet számítani. Meg lehet egyébként máshogy is oldani ezt, de bonyolult igazából, és ez egy tanulságos történet is a git verziókezelőnek a működéséről.
 
 #### whitenoise
 aztán a ``settings.py``-ba pakoljuk be a MIDDLEWARE-ek közé:
@@ -631,6 +641,8 @@ ALLOWED_HOSTS = ['HEROKUREMOTE.herokuapp.com', '127.0.0.1']
 ```
 
 szóval heroku-val fogsz tudni pusholni. 
+
+Mielőtt továbbmegyünk, committáld ezt a változtatást is.
 
 #### Push Herokura
 
