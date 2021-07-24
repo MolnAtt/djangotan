@@ -74,13 +74,13 @@ Feltesszük, hogy a git és a python már installálva van.
 21. VSCODE: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py/``: 
 	```py
 	INSTALLED_APPS = [
-	'django.contrib.admin',
-	'django.contrib.auth',
-	'django.contrib.contenttypes',
-	'django.contrib.sessions',
-	'django.contrib.messages',
-	'django.contrib.staticfiles',
-	'APP',
+	    'django.contrib.admin',
+	    'django.contrib.auth',
+	    'django.contrib.contenttypes',
+	    'django.contrib.sessions',
+	    'django.contrib.messages',
+	    'django.contrib.staticfiles',
+	    'APP',
 	]
 	```
 22. CMD: ``GYÖKÉR/REPONEVE/APP/templates/``: (könyvtár létrehozása)
@@ -88,7 +88,7 @@ Feltesszük, hogy a git és a python már installálva van.
 24. VSCODE: ``GYÖKÉR/REPONEVE/APP/views.py``:
 	```py
 	def VIEW(request):
-	return render(request, "EZ.html", {})
+	    return render(request, "EZ.html", {})
 	```
 25. VSCODE: ``GYÖKÉR/REPONEVE/PROJEKT/urls.py``: 
 	```py
@@ -96,8 +96,8 @@ Feltesszük, hogy a git és a python már installálva van.
 	from django.urls import path
 	from APP.views import VIEW
 	urlpatterns = [
-	path('admin/', admin.site.urls),
-	path('', VIEW),
+	    path('admin/', admin.site.urls),
+	    path('', VIEW),
 	]
 	```
 26. CMD: ``GYÖKÉR/REPONEVE/``: 
@@ -115,18 +115,18 @@ Feltesszük, hogy a git és a python már installálva van.
 	```
 28. VSCODE: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``: 
 	```py
-	# INNEN szedegeti össze azokat a statikus fájlokat, amelyek nem tartoznak egyetlen apphoz sem:
-	STATICFILES_DIRS = [
-	BASE_DIR/'static'
-	]
+# INNEN szedegeti össze azokat a statikus fájlokat, amelyek nem tartoznak egyetlen apphoz sem:
+STATICFILES_DIRS = [
+    BASE_DIR/'static'
+]
 
-	# IDE fogja collectelni a collectstatic
-	STATIC_ROOT = BASE_DIR / 'staticfiles'  
-	#régebbi django-hoz: 
-	#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# IDE fogja collectelni a collectstatic
+STATIC_ROOT = BASE_DIR / 'staticfiles'  
+#régebbi django-hoz: 
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-	# ITT fogja észlelni a böngésző
-	STATIC_URL = '/static/'
+# ITT fogja észlelni a böngésző
+STATIC_URL = '/static/'
 	```
 29. VSCODE: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``: Middleware-ek közé betenni:
 	```py
