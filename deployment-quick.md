@@ -1,4 +1,4 @@
-# Deployment Herokura 43 lépésben
+# Deployment Herokura 42 lépésben
 Feltesszük, hogy a git és a python már installálva van. 
 
 Általában mindenhol igaz, hogy a python-t terminálból a "py" paranccsal érjük el windowsból, és "python" paranccsal érjük el linuxból.
@@ -49,12 +49,9 @@ Feltesszük, hogy a git és a python már installálva van.
 	```sh
 	mv PROJEKT/PROJEKT/* PROJEKT/
 	```
-16. CMD: (Teszt) ``GYÖKÉR/REPONEVE/``
+17. CMD: ``GYÖKÉR/REPONEVE/``: TESZT & MENTÉS
 	```sh
 	py manage.py runserver
-	```
-17. CMD: ``GYÖKÉR/REPONEVE/``: 
-	```sh
 	git add .
 	git commit -m "Django-projekt létrehozása"
 	git push origin main
@@ -100,12 +97,9 @@ Feltesszük, hogy a git és a python már installálva van.
 	    path('', VIEW),
 	]
 	```
-16. CMD: (Teszt) ``GYÖKÉR/REPONEVE/`` 
+17. CMD: ``GYÖKÉR/REPONEVE/``: TESZT & MENTÉS
 	```sh
 	py manage.py runserver
-	```
-26. CMD: ``GYÖKÉR/REPONEVE/``: 
-	```sh
 	git add .
 	git commit -m "App és view létrehozása."
 	git push origin main
@@ -148,22 +142,23 @@ Feltesszük, hogy a git és a python már installálva van.
 	# itt a whitenoise alkalmazása
 	STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 	```
-31. CMD: ``GYÖKÉR/REPONEVE/``: 
+17. CMD: ``GYÖKÉR/REPONEVE/``: TESZT & MENTÉS
 	```sh
+	py manage.py runserver
 	git add .
 	git commit -m "adatbázissal kapcsolatos beállítások a settings.py-ban"
 	git push origin main
 	```
 32. CMD: ``GYÖKÉR/REPONEVE/``: 
 	```sh
-	echo web: gunicorn PROJEKT.wsgi --log-file - > Procfile
+	echo "web: gunicorn PROJEKT.wsgi --log-file" - > Procfile
 	```
-33. CMD: ``GYÖKÉR/REPONEVE/Procfile``: kódolást áttenni UTF8-ra
+33. NOTEPAD++: ``GYÖKÉR/REPONEVE/Procfile``: kódolást áttenni UTF8-ra
 34. CMD: ``GYÖKÉR/REPONEVE/``: 
 	```sh
 	pip freeze > requirements.txt
 	```
-35. CMD: ``GYÖKÉR/REPONEVE/requirements.txt``: kódolást áttenni UTF8-ra
+35. NOTEPAD++: ``GYÖKÉR/REPONEVE/requirements.txt``: kódolást áttenni UTF8-ra
 36. NOTEPAD++: ``GYÖKÉR/REPONEVE/requirements.txt``: Legyenek ott ezek, esetleg más verziószámmal:
 	```dj-database-url==0.5.0
 	Django==3.1.7
@@ -176,8 +171,9 @@ Feltesszük, hogy a git és a python már installálva van.
 	echo python-3.8.8 > runtime.txt
 	```
 38. NOTEPAD++: ``GYÖKÉR/REPONEVE/runtime.txt``: kódolást tedd át UTF8-ra
-39. CMD: ``GYÖKÉR/REPONEVE/``: 
+17. CMD: ``GYÖKÉR/REPONEVE/``: TESZT & MENTÉS
 	```sh
+	py manage.py runserver
 	git add .
 	git commit -m "Heroku-fájlok: Procfile, requirements, runtime.txt"
 	git push origin main
