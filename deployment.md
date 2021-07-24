@@ -588,6 +588,8 @@ találd ki, hogy mi legyen a herokus repo neve, én ezt REMOTENEV-nek fogom hív
 ```sh
 heroku create HEROKUREMOTE
 ```
+Ha hibaüzenet van, az azért van, mert újra kéne indítani a powershellt. (új program került a PATH-hoz!)
+
 
 Gyorsan próbáld is ki, a http://HEROKUREMOTE.herokuapp.com/ címen megtalálod a repo-t. Valami olyasmit ír majd, hogy 
 ```
@@ -595,11 +597,9 @@ Heroku | Welcome to your new app!
 Refer to the documentation if you need help deploying.
 ```
 
-Ha hibaüzenet van, az azért van, mert újra kéne indítani a powershellt. (új program került a PATH-hoz!)
-
-
 Ha kész, az azt jelenti, hogy mostantól két remote repod lesz.
 Erre rá is lehet nézni gitben:
+
 ```sh
 git remote -v
 ```
