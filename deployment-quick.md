@@ -1,9 +1,11 @@
 # Deployment Herokura 49 lépésben
 Feltesszük, hogy a git és a python már installálva van. 
 
+Általában mindenhol igaz, hogy a python-t terminálból a "py" paranccsal érjük el windowsból, és "python" paranccsal érjük el linuxból.
+
 1. CMD: Django frissítése
 ```sh
-python -m pip install -U Django
+py -m pip install -U Django
 ```
 2. BROWSER - GITHUB: Regisztrálj GitHub-ra: https://github.com/
 3. BROWSER - GITHUB: Csináljuk egy új ``REPONEVE`` GitHub repót
