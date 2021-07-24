@@ -198,9 +198,11 @@ Feltesszük, hogy a git és a python már installálva van.
 
 	ALLOWED_HOSTS = ['HEROKUREMOTE.herokuapp.com', '127.0.0.1']
 	```
-
-46. CMD: ``GYÖKÉR/REPONEVE/``: 
+17. CMD: ``GYÖKÉR/REPONEVE/``: MENTÉS és PUSH GitHubra és Herokura is!
 	```sh
+	git add .
+	git commit -m "ALLOWED_HOSTS = ['HEROKUREMOTE.herokuapp.com', '127.0.0.1']"
+	git push origin main
 	git push heroku main
 	``` 
 47. CMD: ``GYÖKÉR/REPONEVE/`` 
