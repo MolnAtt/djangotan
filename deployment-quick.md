@@ -49,7 +49,7 @@ Feltesszük, hogy a git és a python már installálva van.
 	```sh
 	mv PROJEKT/PROJEKT/* PROJEKT/
 	```
-16. CMD:  ``GYÖKÉR/REPONEVE/``
+16. CMD: (Teszt) ``GYÖKÉR/REPONEVE/``
 	```sh
 	py manage.py runserver
 	```
@@ -99,6 +99,10 @@ Feltesszük, hogy a git és a python már installálva van.
 	    path('admin/', admin.site.urls),
 	    path('', VIEW),
 	]
+	```
+16. CMD: (Teszt) ``GYÖKÉR/REPONEVE/`` 
+	```sh
+	py manage.py runserver
 	```
 26. CMD: ``GYÖKÉR/REPONEVE/``: 
 	```sh
