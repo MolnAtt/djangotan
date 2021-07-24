@@ -24,10 +24,11 @@ Kapcsolódó ismeretek (ha van, szuper, ha nincs, nem akkora baj):
 
 https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Deployment
 
-Én most 3.1.7-es Django-val dolgozom. Esetleg érdemes frissíteni a legújabb django-ra:
+Én most 3.1.7-es Django-val dolgozom. Esetleg érdemes frissíteni a legújabb pip-re és django-ra:
 
 **Hol:** bárhol
 ```sh
+py -m pip install --upgrade pip
 py -m pip install -U Django
 ```
 
