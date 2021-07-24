@@ -47,7 +47,7 @@ Feltesszük, hogy a git és a python már installálva van.
 	```
 15. CMD:  ``GYÖKÉR/REPONEVE/``
 	```sh
-	mv PROJEKT/* .
+	mv PROJEKT/PROJEKT/* PROJEKT/
 	```
 16. CMD:  ``GYÖKÉR/REPONEVE/``
 	```sh
