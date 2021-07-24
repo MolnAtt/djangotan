@@ -535,7 +535,7 @@ whitenoise==5.2.0
 ```
 
 Psycopg2 legyen ott akkor is, ha nem raktad végül fel, mert a postgres adatbázishoz a herokun már mindenképp kelleni fog!
-Én egy asgiref-et, pytz, sqlparse-ot töröltem most. Annak lehet utána kéne nézni, hoyg a psycopg2-ból a 2.8.6 rendjén van-e, de gondolom igen...
+Én egy asgiref-et, pytz, sqlparse-ot töröltem most. Annak lehet utána kéne nézni, hogy a psycopg2-ból a 2.8.6 rendjén van-e, de gondolom igen...
 
 Amikor kézzel írod be a psycopg2-t, ne feledd a dupla egyenlőségjelet!
 
