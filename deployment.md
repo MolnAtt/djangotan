@@ -468,9 +468,9 @@ STATICFILES_DIRS = [
 ]
 
 # IDE fogja collectelni a collectstatic
-STATIC_ROOT = BASE_DIR / 'collectedstaticfiles'  
+STATIC_ROOT = BASE_DIR / 'staticfiles'  
 #régebbi django-hoz: 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'collectedstaticfiles')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # ITT fogja észlelni a böngésző
 STATIC_URL = '/static/'
@@ -480,7 +480,7 @@ Van viszont még egy probléma: Most csinálnod kéne egy collectedstaticfiles m
 
 **Hol:** ``GYÖKÉR/REPONEVE/``
 ```sh 
-mkdir collectedstaticfiles
+mkdir static
 echo "ez azért kell, mert git csak fájlokat verziókezel, könyvtárat nem. Tehát a static mappa nem fog létrejönni a herokun, ha itt nincs egy fájl. Később simán törölhető. Kódolása is mindegy." > static/nelegyenures.txt
 ```
 
