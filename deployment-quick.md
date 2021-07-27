@@ -155,7 +155,7 @@ Feltesszük, hogy a git és a python már installálva van.
 	```
 32. CMD: ``GYÖKÉR/REPONEVE/``: 
 	```sh
-	echo "web: gunicorn PROJEKT.wsgi --log-file" - > Procfile
+	echo "web: gunicorn PROJEKT.wsgi --log-file -" > Procfile
 	```
 33. NOTEPAD++: ``GYÖKÉR/REPONEVE/Procfile``: kódolást áttenni UTF8-ra
 34. CMD: ``GYÖKÉR/REPONEVE/``: 
