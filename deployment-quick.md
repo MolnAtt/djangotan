@@ -36,6 +36,7 @@ Feltesszük, hogy a git és a python már installálva van.
 	```
 10. CMD: telepítések a VENV-re  
 	```sh
+	py -m pip install --upgrade pip
 	pip install django
 	pip install gunicorn
 	pip install dj-database-url
