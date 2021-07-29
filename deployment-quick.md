@@ -1,4 +1,4 @@
-# Deployment Herokura 40 lépésben
+# Deployment Herokura 28 lépésben
 Feltesszük, hogy a git és a python már installálva van. 
 
 Általában mindenhol igaz, hogy a python-t terminálból a "py" paranccsal érjük el windowsból, és "python" paranccsal érjük el linuxból.
@@ -21,16 +21,10 @@ Feltesszük, hogy a git és a python már installálva van.
 5. CMD: ``GYÖKÉR/``: 
 	```sh
 	git clone https://github.com/ATEGITHUBFIÓKOD/REPONEVE.git
-	```
-8. CMD: ``GYÖKÉR/``:  
-	```sh
 	virtualenv -p python3 VENV
-	```
-9. CMD: ``GYÖKÉR/``: 
-	```sh
 	.\VENV\Scripts\activate
 	``` 
-	vagy linuxon  
+	vagy utóbbi Linuxon  
 	```sh
 	source VENV/bin/activate
 	```
@@ -42,12 +36,10 @@ Feltesszük, hogy a git és a python már installálva van.
 	pip install dj-database-url
 	pip install whitenoise
 	```
-14. CMD:  ``GYÖKÉR/REPONEVE/``
+14. CMD:  ``GYÖKÉR/REPONEVE/`` Projekt létrehozása és elrendezése (egy szinttel visszahúzzuk a git repo szintjére)
 	```sh
 	django-admin startproject PROJEKT
-	```
-15. CMD:  ``GYÖKÉR/REPONEVE/``
-	```sh
+	mv PROJEKT/*.* ./
 	mv PROJEKT/PROJEKT/* PROJEKT/
 	```
 17. CMD: ``GYÖKÉR/REPONEVE/``: TESZT & MENTÉS
@@ -60,9 +52,6 @@ Feltesszük, hogy a git és a python már installálva van.
 18. CMD: ``GYÖKÉR/REPONEVE/``:  
 	```sh
 	py manage.py migrate
-	```
-19. CMD: ``GYÖKÉR/REPONEVE/``:  
-	```sh
 	py manage.py createsuperuser
 	```
 20. CMD: ``GYÖKÉR/REPONEVE/``:  
@@ -81,10 +70,10 @@ Feltesszük, hogy a git és a python már installálva van.
 	    'APP',
 	]
 	```
-22. CMD: ``GYÖKÉR/REPONEVE/APP/``: 
+22. CMD: ``GYÖKÉR/REPONEVE/``: 
 	```sh
-	mkdir templates
-	echo "hello vilag" > ez.html
+	mkdir APP/templates
+	echo "hello vilag" > APP/ez.html
 	```
 25. VSCODE: ``GYÖKÉR/REPONEVE/APP/views.py``:
 	```py
@@ -153,26 +142,22 @@ Feltesszük, hogy a git és a python már installálva van.
 	git commit -m "adatbázissal kapcsolatos beállítások a settings.py-ban"
 	git push origin main
 	```
-32. CMD: ``GYÖKÉR/REPONEVE/``: 
+32. CMD: ``GYÖKÉR/REPONEVE/``: A https://devcenter.heroku.com/articles/python-support#supported-python-runtimes -n nézz utána, hogy milyen python verziót lehet használni, pl. 3.8.11. És akkor:
 	```sh
 	echo "web: gunicorn PROJEKT.wsgi --log-file -" > Procfile
-	```
-34. CMD: ``GYÖKÉR/REPONEVE/``: 
-	```sh
+	echo python-3.8.8 > runtime.txt
 	pip freeze > requirements.txt
 	```
-36. NOTEPAD++: ``GYÖKÉR/REPONEVE/requirements.txt``: Legyenek ott ezek, esetleg más verziószámmal:
-	```dj-database-url==0.5.0
+	A ``GYÖKÉR/REPONEVE/Procfile``-ban ne felejtsd el átírni a projektet!
+	A ``GYÖKÉR/REPONEVE/requirements.txt`` esetében legyenek ott ezek, esetleg más verziószámmal:
+	```
+	dj-database-url==0.5.0
 	Django==3.1.7
 	gunicorn==20.0.4
 	psycopg2-binary==2.8.6
 	whitenoise==5.2.0
 	```
-37. CMD: ``GYÖKÉR/REPONEVE/runtime.txt``: https://devcenter.heroku.com/articles/python-support#supported-python-runtimes -n nézz utána, hogy milyen python verziót lehet ideírni. Pl.:
-	```sh
-	echo python-3.8.8 > runtime.txt
-	```
-33. NOTEPAD++: ``GYÖKÉR/REPONEVE/``: ``Procfile``, ``requirements.txt`` és ``runtime.txt`` kódolását áttenni UTF8-ra
+33. NOTEPAD++: ``GYÖKÉR/REPONEVE/``: ``Procfile``, ``requirements.txt`` és ``runtime.txt`` kódolását tedd át UTF8-ra!
 17. CMD: ``GYÖKÉR/REPONEVE/``: TESZT & MENTÉS
 	```sh
 	py manage.py runserver
@@ -186,13 +171,7 @@ Feltesszük, hogy a git és a python már installálva van.
 	```sh
 	heroku create HEROKUREMOTE
 	```
-43. BROWSER - HEROKUREMOTE: Teszteld le, hogy sikerült-e:  http://HEROKUREMOTE.herokuapp.com/ 
-
-44. CMD: ``GYÖKÉR/REPONEVE/``: Teszteld le, hogy látja-e a git a herokun lévő remote-ot!
-	```sh
-	git remote -v
-	```
-
+	itt tudod tesztelni: http://HEROKUREMOTE.herokuapp.com/ 
 45. VSCODE: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``: 
 	```py
 	# SECURITY WARNING: don't run with debug turned on in production!
@@ -200,13 +179,10 @@ Feltesszük, hogy a git és a python már installálva van.
 
 	ALLOWED_HOSTS = ['HEROKUREMOTE.herokuapp.com', '127.0.0.1']
 	```
-45. CMD: ``GYÖKÉR/REPONEVE/``:
+45. CMD: ``GYÖKÉR/REPONEVE/``: static mappa és MENTÉS és PUSH GitHubra és Herokura is!
 	```sh
 	mkdir static
-	echo "ez azért kell, mert git csak fájlokat verziókezel, könyvtárat nem. Tehát a static mappa nem fog létrejönni a herokun, ha itt nincs egy fájl. Később simán törölhető. Kódolása is mindegy." > static/nelegyenures.txt
-	```
-17. CMD: ``GYÖKÉR/REPONEVE/``: MENTÉS és PUSH GitHubra és Herokura is!
-	```sh
+	echo "bla" > static/nelegyenures.txt
 	git add .
 	git commit -m "ALLOWED_HOSTS = ['HEROKUREMOTE.herokuapp.com', '127.0.0.1']"
 	git push origin main
@@ -215,12 +191,7 @@ Feltesszük, hogy a git és a python már installálva van.
 47. CMD: ``GYÖKÉR/REPONEVE/`` 
 	```sh
 	heroku run python manage.py migrate
-	```
-48. CMD: ``GYÖKÉR/REPONEVE/`` 
-	```sh
 	heroku run python manage.py createsuperuser
-	```
-49. CMD: ``GYÖKÉR/REPONEVE/`` 
-	```sh
 	heroku open
+	heroku logs --tail
 	```
