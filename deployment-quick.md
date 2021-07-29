@@ -1,4 +1,4 @@
-# Deployment Herokura 23 lépésben
+# Deployment Herokura 17 lépésben
 Feltesszük, hogy a git és a python már installálva van. 
 
 Általában mindenhol igaz, hogy a python-t terminálból a "py" paranccsal érjük el windowsból, és "python" paranccsal érjük el linuxból.
@@ -183,9 +183,11 @@ Feltesszük, hogy a git és a python már installálva van.
 	git commit -m "Heroku-fájlok: Procfile, requirements, runtime.txt"
 	git push origin main
 	```
-40. BROWSER - HEROKU: Regisztrálj Herokura: https://www.heroku.com/
-41. BROWSER - HEROKU: Töltsd le és installáld a Heroku CLI-t: https://devcenter.heroku.com/articles/getting-started-with-python#set-up
-42. CMD: ``GYÖKÉR/REPONEVE/``: 
+40. BROWSER - HEROKU: 
+	Regisztrálj Herokura: https://www.heroku.com/
+
+	Töltsd le és installáld a Heroku CLI-t: https://devcenter.heroku.com/articles/getting-started-with-python#set-up
+43. CMD: ``GYÖKÉR/REPONEVE/``: 
 	```sh
 	heroku create HEROKUREMOTE
 	```
