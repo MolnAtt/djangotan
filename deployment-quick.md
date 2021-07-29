@@ -58,7 +58,7 @@ Feltesszük, hogy a git és a python már installálva van.
 	code .\PROJEKT\settings.py
 	
 	mkdir APP/templates
-	echo "hello vilag" > APP/ez.html
+	echo "hello vilag" > .\APP\templates\ez.html
 	code .\APP\views.py
 	
 	code .\PROJEKT\urls.py
