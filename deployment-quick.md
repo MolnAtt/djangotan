@@ -59,11 +59,13 @@ Feltesszük, hogy a git és a python már installálva van.
 	
 	mkdir APP/templates
 	echo "hello vilag" > .\APP\templates\ez.html
+	code .\APP\templates\ez.html
 	code .\APP\views.py
-	
 	code .\PROJEKT\urls.py
 	```
 
+	Az ez.html kódolását váltsd át utf8-ra
+	
 	A ``settings.py``-ba
 	```py
 	INSTALLED_APPS = [
