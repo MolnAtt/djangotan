@@ -157,12 +157,10 @@ Feltesszük, hogy a git és a python már installálva van.
 	```sh
 	echo "web: gunicorn PROJEKT.wsgi --log-file -" > Procfile
 	```
-33. NOTEPAD++: ``GYÖKÉR/REPONEVE/Procfile``: kódolást áttenni UTF8-ra
 34. CMD: ``GYÖKÉR/REPONEVE/``: 
 	```sh
 	pip freeze > requirements.txt
 	```
-35. NOTEPAD++: ``GYÖKÉR/REPONEVE/requirements.txt``: kódolást áttenni UTF8-ra
 36. NOTEPAD++: ``GYÖKÉR/REPONEVE/requirements.txt``: Legyenek ott ezek, esetleg más verziószámmal:
 	```dj-database-url==0.5.0
 	Django==3.1.7
@@ -174,7 +172,7 @@ Feltesszük, hogy a git és a python már installálva van.
 	```sh
 	echo python-3.8.8 > runtime.txt
 	```
-38. NOTEPAD++: ``GYÖKÉR/REPONEVE/runtime.txt``: kódolást tedd át UTF8-ra
+33. NOTEPAD++: ``GYÖKÉR/REPONEVE/``: ``Procfile``, ``requirements.txt`` és ``runtime.txt`` kódolását áttenni UTF8-ra
 17. CMD: ``GYÖKÉR/REPONEVE/``: TESZT & MENTÉS
 	```sh
 	py manage.py runserver
