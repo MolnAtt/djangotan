@@ -95,7 +95,8 @@ Feltesszük, hogy a git és a python már installálva van.
 	    path('', VIEW),
 	]
 	```
-17. CMD: ``GYÖKÉR/REPONEVE/``: TESZT & MENTÉS
+
+	``GYÖKÉR/REPONEVE/``: TESZT & MENTÉS
 	```sh
 	py manage.py runserver
 	git add .
@@ -106,13 +107,16 @@ Feltesszük, hogy a git és a python már installálva van.
 	```sh
 	code .\PROJEKT\settings.py
 	```
+	
+	a végére:
 	```py
 	# Heroku: Update database configuration from $DATABASE_URL.
 	import dj_database_url
 	db_from_env = dj_database_url.config(conn_max_age=500)
 	DATABASES['default'].update(db_from_env)
 	```
-29. VSCODE: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``: a whitenoise-t a MIDDLEWARE-ben meghívni:
+	
+	a whitenoise-t a MIDDLEWARE-ben meghívni:
 	```py
 	MIDDLEWARE = [
 	    'django.middleware.security.SecurityMiddleware',
@@ -143,7 +147,8 @@ Feltesszük, hogy a git és a python már installálva van.
 	# itt a whitenoise alkalmazása
 	STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 	```
-17. CMD: ``GYÖKÉR/REPONEVE/``: TESZT & MENTÉS
+
+	``GYÖKÉR/REPONEVE/``: TESZT & MENTÉS
 	```sh
 	py manage.py runserver
 	git add .
@@ -155,6 +160,9 @@ Feltesszük, hogy a git és a python már installálva van.
 	echo "web: gunicorn PROJEKT.wsgi --log-file -" > Procfile
 	echo python-3.8.8 > runtime.txt
 	pip freeze > requirements.txt
+	code Procfile
+	code runtime.txt
+	code requirements.txt
 	```
 	A ``GYÖKÉR/REPONEVE/Procfile``-ban ne felejtsd el átírni a projektet!
 	A ``GYÖKÉR/REPONEVE/requirements.txt`` esetében legyenek ott ezek, esetleg más verziószámmal:
@@ -165,8 +173,10 @@ Feltesszük, hogy a git és a python már installálva van.
 	psycopg2-binary==2.8.6
 	whitenoise==5.2.0
 	```
-33. NOTEPAD++: ``GYÖKÉR/REPONEVE/``: ``Procfile``, ``requirements.txt`` és ``runtime.txt`` kódolását tedd át UTF8-ra!
-17. CMD: ``GYÖKÉR/REPONEVE/``: TESZT & MENTÉS
+	
+	mindhárom fájlt konvertáld át utf8-ra!
+	
+	``GYÖKÉR/REPONEVE/``: TESZT & MENTÉS
 	```sh
 	py manage.py runserver
 	git add .
