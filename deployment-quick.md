@@ -1,4 +1,4 @@
-# Deployment Herokura 42 lépésben
+# Deployment Herokura 40 lépésben
 Feltesszük, hogy a git és a python már installálva van. 
 
 Általában mindenhol igaz, hogy a python-t terminálból a "py" paranccsal érjük el windowsból, és "python" paranccsal érjük el linuxból.
