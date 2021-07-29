@@ -1,4 +1,4 @@
-# Deployment Herokura 28 lépésben
+# Deployment Herokura 23 lépésben
 Feltesszük, hogy a git és a python már installálva van. 
 
 Általában mindenhol igaz, hogy a python-t terminálból a "py" paranccsal érjük el windowsból, és "python" paranccsal érjük el linuxból.
@@ -41,9 +41,7 @@ Feltesszük, hogy a git és a python már installálva van.
 	django-admin startproject PROJEKT
 	mv PROJEKT/*.* ./
 	mv PROJEKT/PROJEKT/* PROJEKT/
-	```
-17. CMD: ``GYÖKÉR/REPONEVE/``: TESZT & MENTÉS
-	```sh
+	py manage.py migrate
 	py manage.py runserver
 	git add .
 	git commit -m "Django-projekt létrehozása"
@@ -57,8 +55,16 @@ Feltesszük, hogy a git és a python már installálva van.
 20. CMD: ``GYÖKÉR/REPONEVE/``:  
 	```sh
 	django-admin startapp APP
+	code .\PROJEKT\settings.py
+	
+	mkdir APP/templates
+	echo "hello vilag" > APP/ez.html
+	code .\APP\views.py
+	
+	code .\PROJEKT\urls.py
 	```
-21. VSCODE: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py/``: 
+
+	A ``settings.py``-ba
 	```py
 	INSTALLED_APPS = [
 	    'django.contrib.admin',
@@ -70,17 +76,14 @@ Feltesszük, hogy a git és a python már installálva van.
 	    'APP',
 	]
 	```
-22. CMD: ``GYÖKÉR/REPONEVE/``: 
-	```sh
-	mkdir APP/templates
-	echo "hello vilag" > APP/ez.html
-	```
-25. VSCODE: ``GYÖKÉR/REPONEVE/APP/views.py``:
+	
+	A ``views.py``-ba
 	```py
 	def VIEW(request):
 	    return render(request, "ez.html", {})
 	```
-25. VSCODE: ``GYÖKÉR/REPONEVE/PROJEKT/urls.py``: 
+	
+	Az ``urls.py``-ba
 	```py
 	from django.contrib import admin
 	from django.urls import path
@@ -98,6 +101,9 @@ Feltesszük, hogy a git és a python már installálva van.
 	git push origin main
 	```
 27. VSCODE: ``GYÖKÉR/REPONEVE/PROJEKT/settings.py``: 
+	```sh
+	code .\PROJEKT\settings.py
+	```
 	```py
 	# Heroku: Update database configuration from $DATABASE_URL.
 	import dj_database_url
