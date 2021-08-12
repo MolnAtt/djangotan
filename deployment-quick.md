@@ -59,8 +59,8 @@ Feltesszük, hogy a git és a python már installálva van.
 	mv PROJEKT/PROJEKT/* PROJEKT/
 	code .\PROJEKT\settings.py
 
-	mkdir static
-	echo "bla" > static/nelegyenures.txt
+	mkdir staticfiles
+	echo "bla" > staticfiles/nelegyenures.txt
 
 	echo "web: gunicorn PROJEKT.wsgi --log-file -" > Procfile
 	echo python-3.8.11 > runtime.txt
@@ -147,7 +147,7 @@ Feltesszük, hogy a git és a python már installálva van.
 	mkdir APP/static
 
 	code .\APP\templates\teszt.html
-	code .\APP\templates\teszt.css
+	code .\APP\static\teszt.css
 	code .\APP\views.py
 	code .\PROJEKT\urls.py
 	code .\PROJEKT\settings.py
