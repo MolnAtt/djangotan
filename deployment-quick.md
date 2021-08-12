@@ -22,8 +22,8 @@ Feltesszük, hogy a git és a python már installálva van.
 	```
 4. Itt tudod tesztelni: http://HEROKUREMOTE.herokuapp.com/ 
 
-## 2. GIT 
-	1. Csináljuk egy új ``REPONEVE`` GitHub repót
+## 2. GITHUB 
+	1. A github.com-on csináljunk egy új ``REPONEVE`` GitHub repót
 	2. add .gitignore listből válasszuk ki a Python-t.
 	3. init with README.md
 	4. Másold ki vágólapra a git repo címét, amit a github repód Code-gombjára kattintva találsz meg, és valahogy így néz ki: 
