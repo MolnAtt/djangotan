@@ -44,6 +44,7 @@ Feltesszük, hogy a git és a python már installálva van.
 	pip install gunicorn
 	pip install dj-database-url
 	pip install whitenoise
+	pip install django-rest-framework
 	cd REPONEVE
 	``` 
 	a virtuális környezet aktiválása Linuxon más:
