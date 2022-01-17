@@ -11,9 +11,9 @@ Feltesszük, hogy a git és a python már installálva van.
 ## 1. TELEPÍTÉS
 1. 
 	```sh
-	py -m pip install --upgrade pip
-	py -m pip install virtualenv
-	py -m pip install -U Django
+	py -m pip install --user --upgrade pip
+	py -m pip install --user virtualenv
+	py -m pip install --user -U Django
 	```
 2. Töltsd le és installáld a Heroku CLI-t: https://devcenter.heroku.com/articles/getting-started-with-python#set-up
 3. HEROKUREMOTE az oldalad neve lesz. Itt derül ki, hogy foglalt-e.
