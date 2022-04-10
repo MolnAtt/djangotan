@@ -122,6 +122,7 @@ Feltesszük, hogy a git és a python már installálva van.
 	```sh
 	git add .
 	git commit -m "PROJEKT (Heroku-kompatibilis)"
+	git remote add heroku "https://git.heroku.com/HEROKUREMOTE.git"
 	git push origin main
 	git push heroku main
 	heroku run python manage.py migrate
