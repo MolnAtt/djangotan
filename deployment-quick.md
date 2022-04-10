@@ -88,7 +88,7 @@ Feltesszük, hogy a git és a python már installálva van.
 4. Hosztok engedélyezésénél HEROKUREMOTE név helyett azt írd, amire majd a 
 	```py
 	# SECURITY WARNING: don't run with debug turned on in production!
-	DEBUG = False
+	DEBUG = True
 
 	ALLOWED_HOSTS = ['HEROKUREMOTE.herokuapp.com', '127.0.0.1']
 	```
