@@ -58,7 +58,6 @@ Feltesszük, hogy a git és a python már installálva van.
 	django-admin startproject PROJEKT
 	mv PROJEKT/*.* ./
 	mv PROJEKT/PROJEKT/* PROJEKT/
-	code .\PROJEKT\settings.py
 
 	mkdir static
 	echo "bla" > static/nelegyenures.txt
@@ -66,9 +65,7 @@ Feltesszük, hogy a git és a python már installálva van.
 	echo "web: gunicorn PROJEKT.wsgi --log-file -" > Procfile
 	echo python-3.8.11 > runtime.txt
 	pip freeze > requirements.txt
-	code Procfile
-	code runtime.txt
-	code requirements.txt
+	code .
 	```
 	
 3. a whitenoise-t a MIDDLEWARE-ben meghívni:
@@ -196,6 +193,7 @@ Feltesszük, hogy a git és a python már installálva van.
 	```sh
 	git add .
 	git commit -m "APP (+template+css)."
+	git remote add heroku "https://git.heoku.com/HEROKUREMOTE.git"
 	git push origin main
 	git push heroku main
 	heroku open
