@@ -37,14 +37,14 @@ Feltesszük, hogy a git és a python már installálva van.
 ## 3. VENV 
 3. Ugyanitt, tehát a repo-n kívül: 
 	```sh
-	virtualenv -p python3 VENV
+	py -m virtualenv -p python3 VENV
 	.\VENV\Scripts\activate
 	py -m pip install --upgrade pip
-	pip install django
-	pip install gunicorn
-	pip install dj-database-url
-	pip install whitenoise
-	pip install django-rest-framework
+	py -m pip install django
+	py -m pip install gunicorn
+	py -m pip install dj-database-url
+	py -m pip install whitenoise
+	py -m pip install django-rest-framework
 	cd REPONEVE
 	``` 
 	a virtuális környezet aktiválása Linuxon más:
@@ -60,8 +60,8 @@ Feltesszük, hogy a git és a python már installálva van.
 	mv PROJEKT/PROJEKT/* PROJEKT/
 	code .\PROJEKT\settings.py
 
-	mkdir staticfiles
-	echo "bla" > staticfiles/nelegyenures.txt
+	mkdir static
+	echo "bla" > static/nelegyenures.txt
 
 	echo "web: gunicorn PROJEKT.wsgi --log-file -" > Procfile
 	echo python-3.8.11 > runtime.txt
@@ -100,15 +100,10 @@ Feltesszük, hogy a git és a python már installálva van.
 	db_from_env = dj_database_url.config(conn_max_age=500)
 	DATABASES['default'].update(db_from_env)
 
-	# INNEN szedegeti össze azokat a statikus fájlokat, amelyek nem tartoznak egyetlen apphoz sem:
-	STATICFILES_DIRS = [
-	    BASE_DIR / 'static'
-	]
-
 	# IDE fogja collectelni a collectstatic
-	STATIC_ROOT = BASE_DIR / 'staticfiles'  
+	STATIC_ROOT = BASE_DIR / 'static'  
 	#régebbi django-hoz: 
-	#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+	#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 	# ITT fogja észlelni a böngésző
 	STATIC_URL = '/static/'
